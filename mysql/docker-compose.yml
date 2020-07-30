@@ -1,0 +1,25 @@
+version: '3'
+
+services: 
+    mysql-dev:
+        image: mysql:8.0.21
+        environment: 
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: testdb
+        ports: 
+            - "3306:3306"
+        volumes: 
+            - "//C/Users/abhik/Documents/Docker-apps/mysql/myconf.conf:/etc/mysql/conf.d/config-file.cnf"
+            - "//C/Users/abhik/Documents/Docker-apps/mysql/data:/var/lib/mysql"
+    
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        depends_on: 
+          - mysql-dev
+        ports: 
+            - "8085:80"
+        environment:
+          PMA_HOST: mysql-dev
+          PMA_PORT: 3306
+          PMA_USER: root
+          PMA_PASSWORD: password

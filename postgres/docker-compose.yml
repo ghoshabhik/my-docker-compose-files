@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+
+  postgres-dev:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes: 
+      - "//C/Users/abhik/Documents/Docker-apps/postgres/data:/var/lib/postgresql/data/pgdata"
+
+  pgadmin4:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - 80:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: avik5324@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: avik
