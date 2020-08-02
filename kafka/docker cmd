@@ -1,0 +1,14 @@
+zookeeper:
+docker container run \
+--name zookeeper \
+-p 2181:2181 \
+--restart always -d \
+zookeeper
+
+Kafka:
+docker container run -d \
+-p 9092:9092 \
+--name kafke \
+-e KAFKA_ZOOKEEPER_CONNECT=192.168.99.100:2181 \
+-e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://192.168.99.100:9092 \
+confluentinc/cp-kafka
